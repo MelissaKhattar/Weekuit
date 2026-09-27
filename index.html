@@ -1,0 +1,394 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"></head><body><title>Weekuit Utrecht</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..900&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+:root{
+  --bg:#F3F5F6; --surface:#FFFFFF; --ink:#13262F; --muted:#56666D; --line:#D8DEE1;
+  --accent:#F5B700; --accent-ink:#13262F; --chip:#E7ECEE;
+  --culture:#7A4FD0; --active:#1F8A5B; --concert:#1E63D6; --festival:#D2462B;
+  --good:#1F8A5B; --bad:#B4412F;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E171A; --surface:#162226; --ink:#E4ECEE; --muted:#95A6AC; --line:#2A393E;
+    --accent:#F5B700; --accent-ink:#13262F; --chip:#1F2E33;
+    --culture:#A98BF0; --active:#4CC28B; --concert:#6FA0F5; --festival:#F07A5E;
+    --good:#4CC28B; --bad:#F07A5E; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E171A; --surface:#162226; --ink:#E4ECEE; --muted:#95A6AC; --line:#2A393E;
+  --accent:#F5B700; --accent-ink:#13262F; --chip:#1F2E33;
+  --culture:#A98BF0; --active:#4CC28B; --concert:#6FA0F5; --festival:#F07A5E;
+  --good:#4CC28B; --bad:#F07A5E; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.45;padding:0 16px}
+.wrap{max-width:1180px;margin:0 auto;padding-block:28px 64px}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;padding-bottom:20px;border-bottom:3px solid var(--ink)}
+.brand{display:flex;flex-direction:column;gap:2px}
+.brand h1{font-family:var(--display);font-stretch:75%;font-weight:900;font-size:clamp(2.6rem,7vw,4.2rem);line-height:.9;margin:0;letter-spacing:-.01em;text-transform:uppercase}
+.brand h1 span{background:var(--accent);color:var(--accent-ink);padding:0 .12em}
+.weekline{font-family:var(--mono);font-size:.85rem;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.weekno{font-family:var(--mono);font-weight:600;background:var(--ink);color:var(--bg);padding:2px 8px;border-radius:3px}
+
+.filters{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:14px;border-bottom:1px solid var(--line);display:grid;gap:10px}
+.frow{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.flabel{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700;min-width:64px}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px;font-size:.9rem;font-weight:600}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.seg button .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.budget{display:flex;align-items:center;gap:10px;flex:1 1 260px;max-width:420px}
+.budget input{flex:1;accent-color:var(--accent)}
+.budget output{font-family:var(--mono);font-weight:600;min-width:6.5ch;text-align:right}
+.chk{display:flex;align-items:center;gap:6px;font-size:.9rem;color:var(--muted)}
+
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:32px;margin-top:24px;align-items:start}
+@media (max-width:900px){.layout{grid-template-columns:1fr}.taste{order:-1}}
+
+.taste{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px;display:grid;gap:14px;position:sticky;top:180px}
+@media (max-width:900px){.taste{position:static}}
+.taste h2{font-family:var(--display);font-stretch:80%;font-weight:800;font-size:1.3rem;margin:0;text-transform:uppercase}
+.meter{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.meter i{height:8px;border-radius:2px;background:var(--chip)}
+.meter i.on{background:var(--accent)}
+.meterlabels{display:grid;grid-template-columns:repeat(3,1fr);font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.meterlabels b{color:var(--ink)}
+.taste p{margin:0;font-size:.92rem;color:var(--muted)}
+.tagrow{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:.8rem;padding:2px 9px;border-radius:999px;background:var(--chip);font-weight:600}
+.tag.up{box-shadow:inset 0 0 0 1.5px var(--good);color:var(--good)}
+.tag.down{box-shadow:inset 0 0 0 1.5px var(--bad);color:var(--bad);text-decoration:line-through}
+.sub{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700;margin-bottom:6px}
+.storenote{font-size:.8rem;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+
+.day{margin-bottom:34px}
+.dayhead{display:flex;align-items:baseline;gap:12px;margin-bottom:12px}
+.dayhead h3{font-family:var(--display);font-stretch:75%;font-weight:800;font-size:1.6rem;margin:0;text-transform:uppercase;letter-spacing:.01em}
+.dayhead .date{font-family:var(--mono);color:var(--muted);font-size:.85rem}
+.dayhead .count{margin-left:auto;font-size:.85rem;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:8px;position:relative}
+.card.liked{box-shadow:inset 0 0 0 2px var(--good)}
+.card .meta{display:flex;align-items:center;gap:8px;font-size:.75rem;text-transform:uppercase;letter-spacing:.07em;font-weight:700;color:var(--muted)}
+.card .meta .dot{width:9px;height:9px;border-radius:50%}
+.match{margin-left:auto;font-family:var(--mono);font-size:.72rem;letter-spacing:0;text-transform:none;padding:1px 7px;border-radius:3px;background:var(--accent);color:var(--accent-ink)}
+.card h4{font-family:var(--display);font-stretch:85%;font-weight:750;font-size:1.22rem;line-height:1.15;margin:0;text-wrap:balance}
+.where{font-size:.9rem;color:var(--muted)}
+.blurb{font-size:.93rem;margin:0}
+.pricebox{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.price{font-family:var(--mono);font-weight:600;font-size:1.05rem;font-variant-numeric:tabular-nums}
+.price.free{color:var(--good)}
+.pnote{font-size:.8rem;color:var(--muted)}
+.deal{font-size:.8rem;font-weight:600;background:var(--chip);border-radius:4px;padding:3px 8px;align-self:flex-start}
+.actions{display:flex;gap:6px;margin-top:auto;padding-top:6px;align-items:center;flex-wrap:wrap}
+.vote{border:1px solid var(--line);background:transparent;border-radius:6px;padding:5px 10px;font-size:.85rem;font-weight:600;display:inline-flex;align-items:center;gap:6px}
+.vote svg{width:15px;height:15px}
+.vote.up[aria-pressed="true"]{background:var(--good);border-color:var(--good);color:#fff}
+.vote.down[aria-pressed="true"]{background:var(--bad);border-color:var(--bad);color:#fff}
+.info{margin-left:auto;font-size:.85rem;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+
+.hiddenbar{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font-size:.9rem;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:8px;padding:10px 14px;margin-bottom:22px}
+.linkbtn{background:none;border:none;padding:0;text-decoration:underline;text-underline-offset:3px;font-weight:600;color:var(--ink)}
+.empty{padding:30px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:8px}
+footer{margin-top:40px;border-top:1px solid var(--line);padding-top:16px;font-size:.85rem;color:var(--muted);display:grid;gap:6px}
+footer .srcs{display:flex;flex-wrap:wrap;gap:4px 14px}
+@media (prefers-reduced-motion:no-preference){.card{transition:box-shadow .15s}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <h1>Week<span>uit</span></h1>
+      <div class="weekline"><span class="weekno" id="weekno"></span><span id="range"></span><span id="upd"></span></div>
+    </div>
+    <div class="weekline" id="summary"></div>
+  </header>
+
+  <section class="filters" aria-label="Filters">
+    <div class="frow">
+      <span class="flabel">Where</span>
+      <div class="seg" id="f-region">
+        <button type="button" id="r-all" data-v="all" aria-pressed="true">Everywhere</button>
+        <button type="button" id="r-utrecht" data-v="utrecht" aria-pressed="false">Utrecht</button>
+        <button type="button" id="r-nl" data-v="nl" aria-pressed="false">Rest of NL</button>
+      </div>
+    </div>
+    <div class="frow">
+      <span class="flabel">What</span>
+      <div class="seg" id="f-cat"></div>
+    </div>
+    <div class="frow">
+      <span class="flabel">Budget</span>
+      <div class="budget">
+        <input type="range" id="f-budget" min="0" max="60" step="5" value="60" aria-label="Maximum price per person">
+        <output id="budgetout" for="f-budget">Any</output>
+      </div>
+      <label class="chk"><input type="checkbox" id="f-confirmed"> Confirmed prices only</label>
+    </div>
+    <div class="frow">
+      <span class="flabel">Order</span>
+      <div class="seg" id="f-sort">
+        <button type="button" id="s-fit" data-v="fit" aria-pressed="true">Best match first</button>
+        <button type="button" id="s-date" data-v="date" aria-pressed="false">By time</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="layout">
+    <main id="list" aria-live="polite"></main>
+    <aside class="taste" aria-label="Your taste">
+      <h2>What we like</h2>
+      <div>
+        <div class="meter" id="meter"><i></i><i></i><i></i></div>
+        <div class="meterlabels"><span id="ml0">Learning</span><span id="ml1">Choosy</span><span id="ml2">Picky</span></div>
+      </div>
+      <p id="tastetext"></p>
+      <div><div class="sub">More of</div><div class="tagrow" id="liketags"></div></div>
+      <div><div class="sub">Less of</div><div class="tagrow" id="disliketags"></div></div>
+      <div class="storenote" id="storenote">Connecting to saved votes…</div>
+    </aside>
+  </div>
+
+  <footer>
+    <div>Prices marked ~ are estimates, the real price is on the event page. Always check before you go.</div>
+    <div class="srcs" id="sources"></div>
+  </footer>
+</div>
+
+<script>
+const DATA = {"week": 40, "from": "2026-09-28", "to": "2026-10-04", "updated": "2026-09-27", "events": [{"id": "nff-2026", "title": "Nederlands Film Festival", "cat": "festival", "tags": ["film", "dutch", "premieres"], "city": "Utrecht", "region": "utrecht", "venue": "Various cinemas, festival heart at Jaarbeursplein", "start": "2026-09-25", "end": "2026-10-02", "price": 8.5, "approx": false, "priceNote": "€13.50 per film, €8.50 under 30 or 65+, €29 day pass", "deal": "Free or reduced with VriendenLoterij VIP-KAART, Cineville or CJP", "url": "https://www.filmfestival.nl/en/program", "blurb": "The yearly showcase of new Dutch film. Last days of the festival this week, closing Friday."}, {"id": "ilfu-2026", "title": "ILFU literature festival", "cat": "culture", "tags": ["literature", "talks", "poetry"], "city": "Utrecht", "region": "utrecht", "venue": "Various locations", "start": "2026-09-19", "end": "2026-10-03", "price": 10, "approx": true, "priceNote": "Price per talk varies, check the agenda", "url": "https://ilfu.com/agenda", "blurb": "International Literature Festival Utrecht, theme Write Fire. Author talks (Maggie O'Farrell among them) and the NK Poetry Slam final."}, {"id": "nacht-poezie-2026", "title": "43rd Nacht van de Poëzie", "cat": "culture", "tags": ["poetry", "literature", "night", "music"], "city": "Utrecht", "region": "utrecht", "venue": "TivoliVredenburg, Grote Zaal", "start": "2026-10-03", "end": "2026-10-03", "time": "20:00 to 03:00", "price": 47.5, "approx": false, "priceNote": "From €47.50", "url": "https://www.tivolivredenburg.nl/agenda/32018206/ilfu-de-43ste-nacht-van-de-poezie-03-10-2026", "blurb": "All night poetry with Antjie Krog, Lucas Rijneveld and Lin An Phoa. Interludes by Arjen Lubach, Släpstick and Klezmagic."}, {"id": "dizzee-rascal-2026", "title": "Dizzee Rascal", "cat": "concert", "tags": ["hiphop", "grime", "electronic"], "city": "Utrecht", "region": "utrecht", "venue": "TivoliVredenburg, Ronda", "start": "2026-09-28", "end": "2026-09-28", "time": "21:00", "price": 33, "approx": false, "priceNote": "€33, €10 with U-pas", "url": "https://www.tivolivredenburg.nl/agenda/45848892/dizzee-rascal-28-09-2026", "blurb": "The pioneer of grime on his We Want Bass tour."}, {"id": "death-cab-2026", "title": "Death Cab for Cutie", "cat": "concert", "tags": ["indie", "rock"], "city": "Utrecht", "region": "utrecht", "venue": "TivoliVredenburg", "start": "2026-09-29", "end": "2026-09-29", "price": 45, "approx": true, "priceNote": "Price not confirmed, check the venue", "url": "https://www.tivolivredenburg.nl/agenda/", "blurb": "American indie band, touring Europe."}, {"id": "devin-townsend-2026", "title": "Devin Townsend: Metamorphosis solo tour", "cat": "concert", "tags": ["metal", "rock"], "city": "Utrecht", "region": "utrecht", "venue": "TivoliVredenburg", "start": "2026-09-29", "end": "2026-09-29", "price": 40, "approx": true, "priceNote": "Price not confirmed, check the venue", "url": "https://www.tivolivredenburg.nl/agenda/", "blurb": "Solo show from the Canadian prog metal songwriter."}, {"id": "kamerkoor-2026", "title": "Nederlands Kamerkoor", "cat": "concert", "tags": ["classical", "choir"], "city": "Utrecht", "region": "utrecht", "venue": "Pieterskerk", "start": "2026-09-29", "end": "2026-09-29", "price": 30, "approx": true, "priceNote": "Price not confirmed, check the venue", "url": "https://www.tivolivredenburg.nl/agenda/", "blurb": "The Netherlands Chamber Choir in one of Utrecht's oldest churches."}, {"id": "blomqvist-2026", "title": "A. Blomqvist", "cat": "concert", "tags": ["piano", "ambient", "classical"], "city": "Utrecht", "region": "utrecht", "venue": "TivoliVredenburg", "start": "2026-09-29", "end": "2026-09-29", "price": 20, "approx": true, "priceNote": "Price not confirmed, check the venue", "url": "https://www.tivolivredenburg.nl/agenda/", "blurb": "Quiet, melancholic piano music."}, {"id": "podcast-paulsboutique-2026", "title": "Live podcast: St. Paul's Boutique", "cat": "culture", "tags": ["podcast", "music", "talks"], "city": "Utrecht", "region": "utrecht", "venue": "TivoliVredenburg", "start": "2026-09-30", "end": "2026-09-30", "price": 0, "approx": false, "priceNote": "Free", "url": "https://www.tivolivredenburg.nl/agenda/", "blurb": "A free live podcast evening about music."}, {"id": "tivoli-lunch-2026-10-02", "title": "Free lunch concert", "cat": "concert", "tags": ["classical", "daytime"], "city": "Utrecht", "region": "utrecht", "venue": "TivoliVredenburg", "start": "2026-10-02", "end": "2026-10-02", "time": "Lunchtime", "price": 0, "approx": false, "priceNote": "Free", "url": "https://www.tivolivredenburg.nl/lunchconcerten/", "blurb": "Weekly free Friday lunch concert. Short, no ticket needed."}, {"id": "singelloop-2026", "title": "TREK Singelloop Utrecht", "cat": "active", "tags": ["running", "outdoors", "sport"], "city": "Utrecht", "region": "utrecht", "venue": "Around the Singel, city centre", "start": "2026-10-04", "end": "2026-10-04", "price": 0, "approx": false, "priceNote": "Free to watch, paid entry to run (5K, 10K, half marathon)", "url": "https://singellooputrecht.nl/", "blurb": "The oldest street race in the Netherlands, along the city canals. Run it or cheer from the side."}, {"id": "kampeer-jaarbeurs-2026", "title": "Kampeer & Caravan Jaarbeurs", "cat": "active", "tags": ["camping", "outdoors", "fair"], "city": "Utrecht", "region": "utrecht", "venue": "Jaarbeurs", "start": "2026-09-30", "end": "2026-10-04", "price": 14.5, "approx": false, "priceNote": "€14.50 to €16.75 online", "url": "https://www.kampeerencaravanjaarbeurs.nl/tickets", "blurb": "The big camping and caravan fair, with a campsite village inside for workshops."}, {"id": "keen-on-coffee-2026", "title": "Keen on Coffee Fest and Dutch Aeropress Championship", "cat": "festival", "tags": ["food", "coffee", "daytime"], "city": "Utrecht", "region": "utrecht", "venue": "The Ping Pong Club", "start": "2026-10-03", "end": "2026-10-03", "time": "13:00 to 20:30", "price": 12.5, "approx": false, "priceNote": "€12.50", "url": "https://www.depingpongclub.nl/agenda/", "blurb": "Coffee tastings and the national Aeropress final, with ping pong tables around you."}, {"id": "afrovibes-kikker-2026", "title": "Afrovibes: Humming-Bird / Colibri", "cat": "culture", "tags": ["dance", "theatre", "african"], "city": "Utrecht", "region": "utrecht", "venue": "Theater Kikker", "start": "2026-10-04", "end": "2026-10-04", "time": "19:00", "price": 18, "approx": true, "priceNote": "Price not confirmed, check the venue", "url": "https://www.uitagendautrecht.nl/evenement/148633/afrovibes-humming-bird-colibri", "blurb": "Contemporary dance from the Afrovibes festival, the Utrecht stop."}, {"id": "centraal-franciscus-2026", "title": "Twilight of the Gods: Frans Franciscus", "cat": "culture", "tags": ["art", "museum", "exhibition"], "city": "Utrecht", "region": "utrecht", "venue": "Centraal Museum", "start": "2026-07-10", "end": "2026-11-22", "price": 16, "approx": true, "priceNote": "Regular museum entry, check the site", "url": "https://www.centraalmuseum.nl/en/now/exhibitions", "blurb": "Exhibition at Utrecht's main art museum, on until 22 November."}, {"id": "stadskraan-2026", "title": "Weekend boat trip with the Stadskraan", "cat": "active", "tags": ["boat", "outdoors", "history"], "city": "Utrecht", "region": "utrecht", "venue": "De Meern", "start": "2026-10-03", "end": "2026-10-04", "time": "14:00", "price": 15, "approx": true, "priceNote": "Price not confirmed, check UITagenda", "url": "https://www.uitagendautrecht.nl/evenement/145822/combi-weekendvaart-met-de-stadskraan", "blurb": "Sail out on Utrecht's historic floating city crane."}, {"id": "vechtclub-workshops-2026", "title": "Pottery or concrete casting workshop", "cat": "active", "tags": ["workshop", "creative", "hands-on"], "city": "Utrecht", "region": "utrecht", "venue": "Vechtclub XL (next to Beton-T)", "start": "2026-09-28", "end": "2026-10-04", "price": 35, "approx": true, "priceNote": "Price not confirmed, several days and times", "url": "https://www.vechtclub.nl/agenda/", "blurb": "Hands-on workshops in the creative hub on the Vecht."}, {"id": "leidens-ontzet-2026", "title": "Leidens Ontzet", "cat": "festival", "tags": ["street party", "tradition", "fair", "music"], "city": "Leiden", "region": "nl", "venue": "Leiden city centre", "start": "2026-10-02", "end": "2026-10-03", "price": 0, "approx": false, "priceNote": "Free", "url": "https://3october.nl/programma/", "blurb": "Leiden's huge 3 October street party: fair, parade, live music and hutspot and herring. 40 minutes by train."}, {"id": "afrovibes-festival-2026", "title": "Afrovibes Festival", "cat": "festival", "tags": ["dance", "theatre", "african", "music"], "city": "Amsterdam, Rotterdam", "region": "nl", "venue": "De Brakke Grond, Bijlmer Parktheater, Maaspodium", "start": "2026-10-01", "end": "2026-10-04", "price": 18, "approx": true, "priceNote": "Price per show varies", "url": "https://www.afrovibes.nl/", "blurb": "Contemporary dance, theatre and music from African and diaspora artists. Theme Soil | Soul."}, {"id": "boekelo-2026", "title": "Military Boekelo-Enschede", "cat": "active", "tags": ["horses", "sport", "outdoors"], "city": "Enschede", "region": "nl", "venue": "Boekelo", "start": "2026-09-30", "end": "2026-10-04", "price": 0, "approx": false, "priceNote": "Wed 30 Sep free, Thu, Fri, Sun €20.50, Sat cross country €42", "url": "https://www.military-boekelo.nl/tickets", "blurb": "International eventing. Saturday's cross country is the big day, Wednesday is free."}, {"id": "hisaishi-2026", "title": "Joe Hisaishi and the Concertgebouworkest", "cat": "concert", "tags": ["film music", "orchestra", "classical"], "city": "Amsterdam", "region": "nl", "venue": "Ziggo Dome", "start": "2026-10-02", "end": "2026-10-04", "time": "Fri 2 and Sun 4 Oct, 20:00", "price": 60, "approx": true, "priceNote": "Price not confirmed, likely sold out, check resale", "url": "https://www.concertgebouworkest.nl/nl/agenda/joe-hisaishi-filmmuziek-concert-in-de-ziggo-dome-2026-10-02/", "blurb": "Hisaishi conducts his Studio Ghibli scores."}, {"id": "de-staat-2026", "title": "De Staat", "cat": "concert", "tags": ["rock", "dutch"], "city": "Amsterdam", "region": "nl", "venue": "Koninklijk Theater Carré", "start": "2026-10-02", "end": "2026-10-03", "price": 40, "approx": true, "priceNote": "Price not confirmed", "url": "https://www.carre.nl/", "blurb": "Nijmegen's art rock band in Carré, two nights."}, {"id": "jalen-ngonda-2026", "title": "Jalen Ngonda", "cat": "concert", "tags": ["soul", "rnb"], "city": "Amsterdam", "region": "nl", "venue": "Paradiso", "start": "2026-10-01", "end": "2026-10-02", "price": 30, "approx": true, "priceNote": "Price not confirmed", "url": "https://www.paradiso.nl/", "blurb": "Retro soul singer, two nights in the Grote Zaal."}, {"id": "kaizers-2026", "title": "Kaizers Orchestra", "cat": "concert", "tags": ["rock", "norwegian"], "city": "Amsterdam", "region": "nl", "venue": "Melkweg Max", "start": "2026-10-02", "end": "2026-10-02", "price": 45, "approx": true, "priceNote": "Price not confirmed", "url": "https://www.melkweg.nl/", "blurb": "Norwegian cabaret rock, oil barrels and all."}, {"id": "jinjer-spiritbox-2026", "title": "Jinjer and Spiritbox", "cat": "concert", "tags": ["metal"], "city": "Amsterdam", "region": "nl", "venue": "AFAS Live", "start": "2026-10-03", "end": "2026-10-03", "price": 50, "approx": true, "priceNote": "Price not confirmed", "url": "https://www.afaslive.nl/", "blurb": "Double metal headline."}, {"id": "ca7riel-2026", "title": "CA7RIEL and Paco Amoroso", "cat": "concert", "tags": ["latin", "pop", "hiphop"], "city": "Amsterdam", "region": "nl", "venue": "AFAS Live", "start": "2026-10-01", "end": "2026-10-01", "price": 45, "approx": true, "priceNote": "Price not confirmed", "url": "https://www.afaslive.nl/", "blurb": "The Argentine duo behind the viral Tiny Desk set."}, {"id": "band-of-horses-2026", "title": "Band of Horses", "cat": "concert", "tags": ["indie", "rock"], "city": "Amsterdam", "region": "nl", "venue": "Paradiso", "start": "2026-10-04", "end": "2026-10-04", "price": 40, "approx": true, "priceNote": "Price not confirmed", "url": "https://www.paradiso.nl/", "blurb": "Americana indie rock."}, {"id": "holland-baroque-2026", "title": "Holland Baroque and Constantinople", "cat": "concert", "tags": ["classical", "baroque", "world"], "city": "Amsterdam", "region": "nl", "venue": "Concertgebouw, Kleine Zaal", "start": "2026-10-03", "end": "2026-10-03", "price": 30, "approx": true, "priceNote": "Price not confirmed", "url": "https://www.concertgebouw.nl/", "blurb": "Baroque meets Persian and Mediterranean music with Kiya Tabassian."}, {"id": "mauritshuis-4-2026", "title": "Mauritshuis for €4 after 4pm", "cat": "culture", "tags": ["art", "museum", "vermeer"], "city": "Den Haag", "region": "nl", "venue": "Mauritshuis", "start": "2026-09-28", "end": "2026-10-04", "time": "Daily after 16:00", "price": 4, "approx": false, "priceNote": "Full price before 16:00", "deal": "Free with VriendenLoterij VIP-KAART", "url": "https://www.mauritshuis.nl/en/visit/four-euro-admission-after-4pm", "blurb": "Girl with a Pearl Earring for four euros in the late afternoon."}, {"id": "joods-museum-2026", "title": "Joods Museum", "cat": "culture", "tags": ["museum", "history"], "city": "Amsterdam", "region": "nl", "venue": "Jewish Cultural Quarter", "start": "2026-09-28", "end": "2026-10-04", "price": 0, "approx": false, "priceNote": "Two people free with VIP-KAART, otherwise regular entry", "deal": "2 people free with VriendenLoterij VIP-KAART", "url": "https://www.vriendenloterij.nl/vipkaart/aanbod", "blurb": "Worth it if you have the VIP-KAART: entry for two costs nothing.", "priceLabel": "Free with card"}, {"start": "2026-09-28", "end": "2026-10-04", "approx": false, "url": "https://www.socialdeal.nl/deals/utrecht/?category=events", "id": "sd-atelier-2026w40", "title": "Painting or ceramics workshop", "cat": "active", "tags": ["workshop", "creative", "hands-on", "social deal"], "city": "Utrecht", "region": "utrecht", "venue": "L'atelier Realista Dell'arte", "price": 24.95, "priceNote": "Was €54.50, 959 sold", "deal": "Social Deal", "blurb": "Two to three hours of painting or ceramics. One of the most bought activity deals in Utrecht right now."}, {"start": "2026-09-28", "end": "2026-10-04", "approx": false, "url": "https://www.socialdeal.nl/deals/utrecht/?category=events", "id": "sd-canndle-2026w40", "title": "Candle making workshop", "cat": "active", "tags": ["workshop", "creative", "hands-on", "social deal"], "city": "Utrecht", "region": "utrecht", "venue": "Canndle", "price": 24.95, "priceNote": "Was €50", "deal": "Social Deal", "blurb": "Make your own candles in 1.5 to 2 hours."}, {"start": "2026-09-28", "end": "2026-10-04", "approx": false, "url": "https://www.socialdeal.nl/deals/utrecht/?category=events", "id": "sd-ouwehands-2026w40", "title": "Ouwehands Dierenpark", "cat": "active", "tags": ["zoo", "outdoors", "daytrip", "social deal"], "city": "Rhenen", "region": "utrecht", "venue": "Ouwehands Dierenpark", "price": 25.5, "priceNote": "Was €31.50, 12,874 sold", "deal": "Social Deal", "blurb": "Zoo with bears and pandas, 40 minutes from Utrecht. The most bought deal in the region."}, {"start": "2026-09-28", "end": "2026-10-04", "approx": false, "url": "https://www.socialdeal.nl/deals/utrecht/?category=events", "id": "sd-amersfoort-zoo-2026w40", "title": "DierenPark Amersfoort", "cat": "active", "tags": ["zoo", "outdoors", "daytrip", "social deal"], "city": "Amersfoort", "region": "utrecht", "venue": "DierenPark Amersfoort", "price": 22.95, "priceNote": "Was €31.50, 3,828 sold", "deal": "Social Deal", "blurb": "Zoo and dinosaur trail, 15 minutes by train."}, {"start": "2026-09-28", "end": "2026-10-04", "approx": false, "url": "https://www.socialdeal.nl/deals/utrecht/?category=events", "id": "sd-easygolf-2026w40", "title": "Golf course with GVB permit", "cat": "active", "tags": ["golf", "sport", "outdoors", "course", "social deal"], "city": "Houten", "region": "utrecht", "venue": "Easy Golf", "price": 99, "priceNote": "Was €249, 841 sold", "deal": "Social Deal", "blurb": "One or two day course that ends with the golf proficiency certificate."}]};
+const SOURCES = [
+  ["UITagenda Utrecht","https://www.uitagendautrecht.nl/"],
+  ["NAR","https://www.nar.nl/"],
+  ["Beton-T / Vechtclub XL","https://www.vechtclub.nl/agenda/"],
+  ["Ping Pong Club","https://www.depingpongclub.nl/agenda/"],
+  ["VriendenLoterij VIP-KAART","https://www.vriendenloterij.nl/vipkaart/aanbod"],
+  ["TivoliVredenburg","https://www.tivolivredenburg.nl/agenda/"],
+  ["Visit Utrecht Region","https://www.visitutrechtregion.com/nl/evenementen"],
+  ["Songkick Amsterdam","https://www.songkick.com/metro-areas/31366-netherlands-amsterdam/october-2026"],
+  ["Uitzinnig","https://www.uitzinnig.nl/festivals_en_evenementen_in_nederland.aspx?m=10"],
+  ["Social Deal","https://www.socialdeal.nl/deals/utrecht/?category=events"]
+];
+const CATS = {culture:"Culture",active:"Active",concert:"Concerts",festival:"Festivals"};
+const state = {region:"all", cats:new Set(Object.keys(CATS)), budget:Infinity, confirmed:false, sort:"fit", showAll:false, showPassed:false};
+let votes = {}; // id -> {vote, cat, tags, region, price, title}
+let store = null; // "db" | "local"
+let db = null;
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const d = s => new Date(s + "T12:00:00");
+const fmtDay = dt => dt.toLocaleDateString("en-GB",{weekday:"long"});
+const fmtDate = dt => dt.toLocaleDateString("en-GB",{day:"numeric",month:"short"});
+const priceBand = p => p === 0 ? "free" : p <= 15 ? "cheap" : p <= 35 ? "mid" : "pricey";
+
+/* ---------- taste model ---------- */
+function features(e){
+  return {cat:"cat:"+e.cat, region:"region:"+e.region, price:"price:"+priceBand(e.price), tags:(e.tags||[]).map(t=>"tag:"+t)};
+}
+function model(){
+  const tally = {};
+  for (const v of Object.values(votes)){
+    const f = features(v);
+    for (const k of [f.cat,f.region,f.price,...f.tags]){
+      tally[k] = tally[k] || {up:0,down:0};
+      v.vote > 0 ? tally[k].up++ : tally[k].down++;
+    }
+  }
+  const w = {};
+  for (const [k,t] of Object.entries(tally)) w[k] = (t.up - t.down) / (t.up + t.down + 1);
+  return {w, tally};
+}
+function score(e, m){
+  const f = features(e), w = m.w;
+  const tagW = f.tags.length ? f.tags.reduce((a,t)=>a+(w[t]||0),0)/f.tags.length : 0;
+  return 1.2*(w[f.cat]||0) + 1.3*tagW + 0.5*(w[f.region]||0) + 0.5*(w[f.price]||0);
+}
+function level(){
+  const n = Object.keys(votes).length;
+  return n >= 15 ? 2 : n >= 5 ? 1 : 0;
+}
+const THRESH = [-Infinity, -0.6, -0.15];
+
+/* ---------- render ---------- */
+function renderCats(){
+  const el = $("#f-cat");
+  el.innerHTML = Object.entries(CATS).map(([k,l]) =>
+    `<button type="button" id="c-${k}" data-v="${k}" aria-pressed="${state.cats.has(k)}"><span class="dot" style="background:var(--${k})"></span>${l}</button>`).join("");
+}
+const ICON_UP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11v9H4v-9h3Zm0 0 4-8a2 2 0 0 1 2 2v4h5.5a2 2 0 0 1 2 2.3l-1.2 6.5a2 2 0 0 1-2 1.7H7"/></svg>';
+const ICON_DOWN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 13V4h3v9h-3Zm0 0-4 8a2 2 0 0 1-2-2v-4H5.5a2 2 0 0 1-2-2.3l1.2-6.5a2 2 0 0 1 2-1.7H17"/></svg>';
+
+function card(e, s){
+  const v = votes[e.id]?.vote || 0;
+  const price = e.priceLabel ? `<span class="price">${esc(e.priceLabel)}</span>` : e.price === 0 ? `<span class="price free">Free</span>` : `<span class="price">${e.approx?"~":""}€${e.price % 1 ? e.price.toFixed(2) : e.price}</span>`;
+  const multi = e.start !== e.end;
+  const when = multi ? `${fmtDate(d(e.start))} to ${fmtDate(d(e.end))}` : fmtDate(d(e.start));
+  const match = Object.keys(votes).length >= 3 && s > 0.35 && !v ? `<span class="match">good match</span>` : "";
+  return `<article class="card${v>0?" liked":""}">
+    <div class="meta"><span class="dot" style="background:var(--${e.cat})"></span>${CATS[e.cat]} · ${esc(e.city)}${match}</div>
+    <h4>${esc(e.title)}</h4>
+    <div class="where">${esc(e.venue)} · ${when}${e.time?" · "+esc(e.time):""}</div>
+    <div class="pricebox">${price}${e.priceNote && e.priceNote !== "Free" ? `<span class="pnote">${esc(e.priceNote)}</span>` : ""}</div>
+    ${e.deal?`<div class="deal">${esc(e.deal)}</div>`:""}
+    <p class="blurb">${esc(e.blurb||"")}</p>
+    <div class="actions">
+      <button type="button" class="vote up" data-id="${e.id}" data-v="1" aria-pressed="${v>0}">${ICON_UP}${v>0?"Liked":"Like"}</button>
+      <button type="button" class="vote down" data-id="${e.id}" data-v="-1" aria-pressed="${v<0}">${ICON_DOWN}Not for us</button>
+      <a class="info" href="${esc(e.url)}" target="_blank" rel="noopener">Tickets and info</a>
+    </div>
+  </article>`;
+}
+
+function render(){
+  const m = model(), lv = level();
+  const from = d(DATA.from), to = d(DATA.to);
+  let passed = 0, pickyHidden = 0;
+  const shown = [];
+  for (const e of DATA.events){
+    if (state.region !== "all" && e.region !== state.region) continue;
+    if (!state.cats.has(e.cat)) continue;
+    if (e.price > state.budget) continue;
+    if (state.confirmed && e.approx) continue;
+    const v = votes[e.id]?.vote || 0, s = score(e, m);
+    if (v < 0 && !state.showPassed){ passed++; continue; }
+    if (!v && !state.showAll && s < THRESH[lv]){ pickyHidden++; continue; }
+    shown.push({e, s});
+  }
+  // group: multi-day first, then by day
+  const groups = new Map();
+  for (let t = new Date(from); t <= to; t.setDate(t.getDate()+1)){
+    const k = t.toISOString().slice(0,10);
+    groups.set(k, {title:fmtDay(t), date:fmtDate(t), items:[]});
+  }
+  groups.set("all", {title:"Any day this week", date:"Runs across several days", items:[]});
+  for (const x of shown){
+    const k = x.e.start !== x.e.end ? "all" : x.e.start;
+    (groups.get(k) || groups.get("all")).items.push(x);
+  }
+  const sortFn = state.sort === "fit"
+    ? (a,b) => (b.s + (votes[b.e.id]?.vote>0?1:0)) - (a.s + (votes[a.e.id]?.vote>0?1:0)) || a.e.price - b.e.price
+    : (a,b) => (a.e.start+(a.e.time||"")).localeCompare(b.e.start+(b.e.time||""));
+  let html = "";
+  if (passed || pickyHidden){
+    const bits = [];
+    if (pickyHidden) bits.push(`${pickyHidden} hidden because they don't fit your taste. <button class="linkbtn" id="showall">Show them</button>`);
+    if (passed) bits.push(`${passed} you passed on. <button class="linkbtn" id="showpassed">Show</button>`);
+    html += `<div class="hiddenbar">${bits.join("<span>·</span>")}</div>`;
+  } else if (state.showAll || state.showPassed){
+    html += `<div class="hiddenbar">Showing everything. <button class="linkbtn" id="resetshow">Let the filter choose again</button></div>`;
+  }
+  let any = false;
+  for (const g of groups.values()){
+    if (!g.items.length) continue;
+    any = true;
+    g.items.sort(sortFn);
+    html += `<section class="day"><div class="dayhead"><h3>${g.title}</h3><span class="date">${g.date}</span><span class="count">${g.items.length} ${g.items.length===1?"thing":"things"}</span></div>
+      <div class="grid">${g.items.map(x=>card(x.e,x.s)).join("")}</div></section>`;
+  }
+  if (!any) html += `<div class="empty">Nothing matches these filters. Try a higher budget or more categories.</div>`;
+  $("#list").innerHTML = html;
+  $("#summary").textContent = `${shown.length} of ${DATA.events.length} showing`;
+  renderTaste(m, lv);
+}
+
+function renderTaste(m, lv){
+  const n = Object.keys(votes).length;
+  document.querySelectorAll("#meter i").forEach((el,i)=>el.classList.toggle("on", i <= lv && n > 0 || i === 0));
+  ["#ml0","#ml1","#ml2"].forEach((s,i)=>{ $(s).innerHTML = i===lv ? `<b>${["Learning","Choosy","Picky"][i]}</b>` : ["Learning","Choosy","Picky"][i]; });
+  const need = lv === 0 ? 5 - n : lv === 1 ? 15 - n : 0;
+  $("#tastetext").textContent = n === 0
+    ? "Tap Like or Not for us on a few things. After 5 votes the dashboard starts hiding what you'd skip, after 15 it gets strict."
+    : lv < 2 ? `${n} ${n===1?"vote":"votes"} so far. ${need} more until it gets ${lv===0?"choosy":"picky"}.`
+    : `${n} votes. It now hides anything that leans toward what you passed on.`;
+  const label = k => k.replace(/^tag:/,"").replace(/^cat:/,"").replace(/^region:utrecht$/,"Utrecht").replace(/^region:nl$/,"outside Utrecht").replace(/^price:/,"")
+    .replace(/^culture$/,"culture").replace(/^free$/,"free stuff").replace(/^cheap$/,"under €15").replace(/^mid$/,"€15 to €35").replace(/^pricey$/,"over €35");
+  const ranked = Object.entries(m.w).filter(([,x])=>Math.abs(x)>=0.3).sort((a,b)=>Math.abs(b[1])-Math.abs(a[1]));
+  const ups = ranked.filter(([,x])=>x>0).slice(0,10), downs = ranked.filter(([,x])=>x<0).slice(0,10);
+  $("#liketags").innerHTML = ups.length ? ups.map(([k])=>`<span class="tag up">${esc(label(k))}</span>`).join("") : `<span class="pnote">Nothing yet</span>`;
+  $("#disliketags").innerHTML = downs.length ? downs.map(([k])=>`<span class="tag down">${esc(label(k))}</span>`).join("") : `<span class="pnote">Nothing yet</span>`;
+}
+
+/* ---------- storage ---------- */
+const LS_KEY = "weekuit-votes";
+function loadLocal(){ try { votes = JSON.parse(localStorage.getItem(LS_KEY)||"{}") || {}; } catch { votes = {}; } }
+function saveLocal(){ try { localStorage.setItem(LS_KEY, JSON.stringify(votes)); } catch {} }
+
+async function setVote(id, v){
+  const e = DATA.events.find(x=>x.id===id); if (!e) return;
+  const cur = votes[id]?.vote || 0;
+  const next = cur === v ? 0 : v;
+  const doc = {vote:next, title:e.title, cat:e.cat, tags:e.tags||[], region:e.region, city:e.city, price:e.price, week:DATA.week, at:new Date().toISOString()};
+  if (next) votes[id] = doc; else delete votes[id];
+  render();
+  if (store === "db"){
+    try { next ? await db.doc("feedback/"+id).set(doc) : await db.doc("feedback/"+id).delete(); }
+    catch (err){ $("#storenote").textContent = "That vote didn't save. You may only have view access to this page."; }
+  } else saveLocal();
+}
+
+async function connect(){
+  loadLocal(); render();
+  try {
+    db = window.claude && await window.claude.use("db");
+  } catch { db = null; }
+  if (!db){
+    store = "local";
+    $("#storenote").textContent = "Votes are saved in this browser only.";
+    return;
+  }
+  store = "db";
+  $("#storenote").textContent = "Votes are shared with everyone on this page and kept from week to week.";
+  db.collection("feedback").onSnapshot(snap => {
+    const next = {};
+    for (const doc of snap.docs){ const x = doc.data(); if (x && x.vote) next[doc.id] = x; }
+    votes = next; render();
+  }, () => { $("#storenote").textContent = "Lost the connection to saved votes. Reload to try again."; });
+}
+
+/* ---------- events ---------- */
+document.addEventListener("click", ev => {
+  const b = ev.target.closest("button"); if (!b) return;
+  if (b.classList.contains("vote")) return setVote(b.dataset.id, +b.dataset.v);
+  if (b.id === "showall"){ state.showAll = true; return render(); }
+  if (b.id === "showpassed"){ state.showPassed = true; return render(); }
+  if (b.id === "resetshow"){ state.showAll = state.showPassed = false; return render(); }
+  const seg = b.closest(".seg"); if (!seg) return;
+  if (seg.id === "f-region" || seg.id === "f-sort"){
+    seg.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed", x===b));
+    state[seg.id === "f-region" ? "region" : "sort"] = b.dataset.v;
+  } else if (seg.id === "f-cat"){
+    const k = b.dataset.v;
+    if (state.cats.has(k) && state.cats.size > 1) state.cats.delete(k); else state.cats.add(k);
+    b.setAttribute("aria-pressed", state.cats.has(k));
+  }
+  render();
+});
+$("#f-budget").addEventListener("input", ev => {
+  const v = +ev.target.value;
+  state.budget = v >= 60 ? Infinity : v;
+  $("#budgetout").textContent = v >= 60 ? "Any" : v === 0 ? "Free" : "≤ €" + v;
+  render();
+});
+$("#f-confirmed").addEventListener("change", ev => { state.confirmed = ev.target.checked; render(); });
+
+/* ---------- init ---------- */
+$("#weekno").textContent = "Week " + DATA.week;
+$("#range").textContent = `${fmtDate(d(DATA.from))} to ${fmtDate(d(DATA.to))} ${d(DATA.to).getFullYear()}`;
+$("#upd").textContent = "· updated " + fmtDate(d(DATA.updated));
+$("#sources").innerHTML = "<span>Sources:</span>" + SOURCES.map(([n,u])=>`<a href="${u}" target="_blank" rel="noopener">${n}</a>`).join("");
+renderCats();
+connect();
+</script>
+</body></html>
