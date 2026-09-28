@@ -718,6 +718,92 @@
    "priceNote": "Was €249, 841 sold",
    "deal": "Social Deal",
    "blurb": "One or two day course that ends with the golf proficiency certificate."
+  },
+  {
+   "id": "ul-paddenstoelen-2026-10-04",
+   "title": "Guided mushroom walk",
+   "cat": "active",
+   "tags": [
+    "walking",
+    "nature",
+    "guided",
+    "outdoors"
+   ],
+   "city": "Amersfoort",
+   "region": "utrecht",
+   "venue": "Landgoed Birkhoven, Barchman Wuytierslaan 232",
+   "start": "2026-10-04",
+   "end": "2026-10-04",
+   "time": "13:30 to 15:30",
+   "price": 5,
+   "approx": false,
+   "priceNote": "€5, booking required",
+   "url": "https://www.utrechtslandschap.nl/activiteiten/excursie/paddenstoelenwandeling",
+   "blurb": "Two hour autumn walk with a Utrechts Landschap guide, looking for fungi in the Birkhoven forest."
+  },
+  {
+   "id": "ul-zeisterbos-walk",
+   "title": "Walk: Sprengen in het Zeisterbos",
+   "cat": "active",
+   "tags": [
+    "walking",
+    "nature",
+    "outdoors",
+    "free"
+   ],
+   "city": "Zeist",
+   "region": "utrecht",
+   "venue": "Zeisterbos",
+   "start": "2026-09-28",
+   "end": "2026-10-04",
+   "price": 0,
+   "approx": false,
+   "priceNote": "Free, marked 5.7 km loop",
+   "url": "https://www.utrechtslandschap.nl/boswandelingen",
+   "blurb": "Short marked forest loop along old spring streams. Free route guide by email from Utrechts Landschap."
+  },
+  {
+   "id": "ul-beerschoten-walk",
+   "title": "Walk: Beerschoten, Houdringe and Panbos",
+   "cat": "active",
+   "tags": [
+    "walking",
+    "nature",
+    "outdoors",
+    "free"
+   ],
+   "city": "De Bilt",
+   "region": "utrecht",
+   "venue": "Beerschoten estate",
+   "start": "2026-09-28",
+   "end": "2026-10-04",
+   "price": 0,
+   "approx": false,
+   "priceNote": "Free, marked 12 km loop",
+   "url": "https://www.utrechtslandschap.nl/boswandelingen",
+   "blurb": "Longer marked loop through three estates, reachable by bike from the city centre."
+  },
+  {
+   "id": "ul-grebbeberg-walk",
+   "title": "Walk: Laarsenberg and Grebbeberg",
+   "cat": "active",
+   "tags": [
+    "walking",
+    "nature",
+    "outdoors",
+    "free",
+    "hills"
+   ],
+   "city": "Rhenen",
+   "region": "utrecht",
+   "venue": "Grebbeberg",
+   "start": "2026-09-28",
+   "end": "2026-10-04",
+   "price": 0,
+   "approx": false,
+   "priceNote": "Free, marked 9 km loop",
+   "url": "https://www.utrechtslandschap.nl/boswandelingen",
+   "blurb": "Hilly forest walk with views over the Rhine floodplains. Good in autumn colours."
   }
  ]
 }

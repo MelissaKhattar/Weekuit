@@ -28,3 +28,6 @@
 
 ## Deals (added 2026-09-27 at Melissa's request)
 - Social Deal Utrecht, activities and events: https://www.socialdeal.nl/deals/utrecht/?category=events (pick activity deals with high sold counts; skip plain restaurant deals)
+
+## Free outdoor ideas (added 2026-09-28 at Melissa's request)
+- Utrechts Landschap: https://www.utrechtslandschap.nl/ (guided excursions from €5: /de-natuur-in/activiteiten; free marked walks: /boswandelingen; walking and cycling route map: /activiteiten-kaart?activityType=wandelroutes and ?activityType=fietsroutes, the map needs a browser to read). Include 2 to 4 free walking or cycling ideas each week.
