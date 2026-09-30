@@ -2,7 +2,7 @@
  "week": 40,
  "from": "2026-09-28",
  "to": "2026-10-04",
- "updated": "2026-09-27",
+ "updated": "2026-09-30",
  "events": [
   {
    "id": "nff-2026",
@@ -804,6 +804,113 @@
    "priceNote": "Free, marked 9 km loop",
    "url": "https://www.utrechtslandschap.nl/boswandelingen",
    "blurb": "Hilly forest walk with views over the Rhine floodplains. Good in autumn colours."
+  },
+  {
+   "id": "neude-bierfestival-2026",
+   "title": "De Neude Bierfestival",
+   "cat": "festival",
+   "tags": [
+    "beer",
+    "food",
+    "outdoors",
+    "street party"
+   ],
+   "city": "Utrecht",
+   "region": "utrecht",
+   "venue": "Neude square",
+   "start": "2026-10-02",
+   "end": "2026-10-03",
+   "price": 15,
+   "approx": true,
+   "priceNote": "Tickets on sale, price not confirmed",
+   "url": "https://deneudebierfestival.nl/",
+   "blurb": "Beer festival on the Neude in the city centre, Friday and Saturday."
+  },
+  {
+   "id": "uqcf-2026",
+   "title": "Utrecht Queer Culture Festival",
+   "cat": "festival",
+   "tags": [
+    "lgbtq",
+    "culture",
+    "talks",
+    "music",
+    "free"
+   ],
+   "city": "Utrecht",
+   "region": "utrecht",
+   "venue": "Various locations",
+   "start": "2026-10-02",
+   "end": "2026-10-11",
+   "price": 0,
+   "approx": false,
+   "priceNote": "Many events free, some paid",
+   "url": "https://uqcf.nl/agenda/",
+   "blurb": "Ten days and over 100 events: exhibitions, talks, parties and workshops. Opens Friday."
+  },
+  {
+   "id": "walk-of-love-2026",
+   "title": "Walk of Love",
+   "cat": "culture",
+   "tags": [
+    "lgbtq",
+    "walking",
+    "free",
+    "outdoors"
+   ],
+   "city": "Utrecht",
+   "region": "utrecht",
+   "venue": "Starts at Moreelsepark (last year)",
+   "start": "2026-10-03",
+   "end": "2026-10-03",
+   "time": "Afternoon, check time",
+   "price": 0,
+   "approx": false,
+   "priceNote": "Free",
+   "url": "https://uqcf.nl/events/walk-of-love-2026/?occurrence=2026-10-03",
+   "blurb": "The festival's colourful walk through the city centre."
+  },
+  {
+   "id": "science-week-2026",
+   "title": "Utrecht Science Week",
+   "cat": "culture",
+   "tags": [
+    "science",
+    "talks",
+    "free"
+   ],
+   "city": "Utrecht",
+   "region": "utrecht",
+   "venue": "Utrecht Science Park and city",
+   "start": "2026-09-25",
+   "end": "2026-10-04",
+   "price": 0,
+   "approx": false,
+   "priceNote": "Free",
+   "url": "https://www.utrechtsciencepark.nl/en/utrecht-science-week/programme",
+   "blurb": "Ten days of lectures, lab tours and science events, last days this week."
+  },
+  {
+   "id": "weekend-wetenschap-2026",
+   "title": "Weekend van de Wetenschap",
+   "cat": "culture",
+   "tags": [
+    "science",
+    "hands-on",
+    "free",
+    "daytime"
+   ],
+   "city": "Utrecht",
+   "region": "utrecht",
+   "venue": "Utrecht Science Park, Minnaert and Koningsberger buildings",
+   "start": "2026-10-04",
+   "end": "2026-10-04",
+   "time": "10:00 to 17:00",
+   "price": 0,
+   "approx": false,
+   "priceNote": "Free, no booking",
+   "url": "https://www.uu.nl/agenda/weekend-van-de-wetenschap-2026",
+   "blurb": "Open day at the university: grow crystals, decipher old manuscripts, mini lectures."
   }
  ]
 }

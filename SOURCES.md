@@ -31,3 +31,14 @@
 
 ## Free outdoor ideas (added 2026-09-28 at Melissa's request)
 - Utrechts Landschap: https://www.utrechtslandschap.nl/ (guided excursions from €5: /de-natuur-in/activiteiten; free marked walks: /boswandelingen; walking and cycling route map: /activiteiten-kaart?activityType=wandelroutes and ?activityType=fietsroutes, the map needs a browser to read). Include 2 to 4 free walking or cycling ideas each week.
+
+## City squares, street and commercial festivals (added 2026-09-30 after missing De Neude Bierfestival)
+UITagenda, Uitzinnig and DUIC did not list the Neude beer festival; commercial square events often only have their own site. So each week also:
+- Search the web directly: "festival Utrecht <dates>", "Neude / Vredenburgplein / Janskerkhof / Domplein / Ledig Erf <month year>", "bierfestival / foodfestival / markt Utrecht <month year>".
+- Centrum Utrecht agenda (city centre events): https://centrumutrecht.nl/agenda/
+- DUIC weekly uittips: https://www.duic.nl/uitgaan (the "Uittips: dit is de komende dagen te doen" column)
+- Dagjeweg Utrecht calendar per day: https://www.dagjeweg.nl/kalender/utrecht
+- Vrijetijdkrant Utrecht: https://www.vrijetijdkrant.nl/utrecht/
+- Wat te doen in: https://www.wattedoenin.nl/
+- Uitzinnig Utrecht: https://www.uitzinnig.nl/evenement/10/utrecht.aspx
+- Utrecht Science Park events: https://www.utrechtsciencepark.nl/events
