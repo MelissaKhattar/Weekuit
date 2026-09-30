@@ -40,7 +40,7 @@ header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:spac
 .weekline{font-family:var(--mono);font-size:.85rem;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .weekno{font-family:var(--mono);font-weight:600;background:var(--ink);color:var(--bg);padding:2px 8px;border-radius:3px}
 
-.filters{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:14px;border-bottom:1px solid var(--line);display:grid;gap:10px}
+.filters{background:var(--bg);padding-block:14px;border-bottom:1px solid var(--line);display:grid;gap:10px}
 .frow{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
 .flabel{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700;min-width:64px}
 .seg{display:flex;flex-wrap:wrap;gap:6px}
@@ -52,10 +52,17 @@ header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:spac
 .budget output{font-family:var(--mono);font-weight:600;min-width:6.5ch;text-align:right}
 .chk{display:flex;align-items:center;gap:6px;font-size:.9rem;color:var(--muted)}
 
+.minibar{position:fixed;left:0;right:0;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 16px calc(8px);padding-top:calc(8px + env(safe-area-inset-top,0px));transform:translateY(-110%);transition:transform .15s}
+.minibar.show{transform:none}
+.minibar .in{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:12px;font-size:.88rem}
+.minibar .txt{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--muted)}
+.minibar .txt b{color:var(--ink)}
+.minibar button{border:1px solid var(--ink);background:var(--ink);color:var(--bg);border-radius:999px;padding:4px 12px;font-size:.85rem;font-weight:600;flex:none}
+@media (prefers-reduced-motion:reduce){.minibar{transition:none}}
 .layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:32px;margin-top:24px;align-items:start}
 @media (max-width:900px){.layout{grid-template-columns:1fr}.taste{order:-1}}
 
-.taste{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px;display:grid;gap:14px;position:sticky;top:180px}
+.taste{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px;display:grid;gap:14px;position:sticky;top:64px}
 @media (max-width:900px){.taste{position:static}}
 .taste h2{font-family:var(--display);font-stretch:80%;font-weight:800;font-size:1.3rem;margin:0;text-transform:uppercase}
 .meter{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
@@ -115,7 +122,8 @@ footer .srcs{display:flex;flex-wrap:wrap;gap:4px 14px}
     <div class="weekline" id="summary"></div>
   </header>
 
-  <section class="filters" aria-label="Filters">
+  <div class="minibar" id="minibar" aria-hidden="true"><div class="in"><span class="txt" id="minitxt"></span><button type="button" id="editfilters" tabindex="-1">Filters</button></div></div>
+  <section class="filters" id="filters" aria-label="Filters">
     <div class="frow">
       <span class="flabel">Where</span>
       <div class="seg" id="f-region">
@@ -303,6 +311,10 @@ function render(){
   if (!any) html += `<div class="empty">Nothing matches these filters. Try a higher budget or more categories.</div>`;
   $("#list").innerHTML = html;
   $("#summary").textContent = `${shown.length} of ${DATA.events.length} showing`;
+  const where = {all:"Everywhere",utrecht:"Utrecht",nl:"Rest of NL"}[state.region];
+  const what = state.cats.size === 4 ? "All types" : [...state.cats].map(c=>CATS[c]).join(", ");
+  const budget = state.budget === Infinity ? "Any budget" : state.budget === 0 ? "Free only" : "Up to €" + state.budget;
+  $("#minitxt").innerHTML = `<b>${shown.length} things</b> · ${where} · ${esc(what)} · ${budget}`;
   renderTaste(m, lv);
 }
 
@@ -393,4 +405,13 @@ $("#upd").textContent = "· updated " + fmtDate(d(DATA.updated));
 $("#sources").innerHTML = "<span>Sources:</span>" + SOURCES.map(([n,u])=>`<a href="${u}" target="_blank" rel="noopener">${n}</a>`).join("");
 renderCats();
 connect();
+try {
+  new IntersectionObserver(([en]) => {
+    const show = !en.isIntersecting && en.boundingClientRect.top < 0;
+    $("#minibar").classList.toggle("show", show);
+    $("#minibar").setAttribute("aria-hidden", !show);
+    $("#editfilters").tabIndex = show ? 0 : -1;
+  }).observe($("#filters"));
+} catch {}
+$("#editfilters").addEventListener("click", () => $("#filters").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"start"}));
 </script>
